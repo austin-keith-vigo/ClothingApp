@@ -18,6 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* ClothingAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ClothingAppTests.m */; };
 		50942CBDC29F74443575B112 /* libPods-ClothingApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9449E16585B41E8A2C42028 /* libPods-ClothingApp.a */; };
 		8089CAB38CD550EF842949C1 /* libPods-ClothingApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AFF534750174CCCAF656453 /* libPods-ClothingApp-tvOS.a */; };
+		D99295DB22F3D302007D1572 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D99295DA22F3D301007D1572 /* GoogleService-Info.plist */; };
 		EC477CA61012247D281A5B71 /* libPods-ClothingApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B74A0B683523E1AC45AAA6 /* libPods-ClothingApp-tvOSTests.a */; };
 		FD1F9F07EBBB3C7A0A48FAC9 /* libPods-ClothingAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD56F813A55105D98E83B626 /* libPods-ClothingAppTests.a */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		6BD95832350C50A13D42182E /* Pods-ClothingApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClothingApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ClothingApp-tvOSTests/Pods-ClothingApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9A303B9BBA94B679E416E5BD /* Pods-ClothingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClothingAppTests.release.xcconfig"; path = "Target Support Files/Pods-ClothingAppTests/Pods-ClothingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		D92B057865B1EE4F7FAB1FF0 /* Pods-ClothingApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClothingApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ClothingApp-tvOS/Pods-ClothingApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		D99295DA22F3D301007D1572 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DC77D2D0258D44C756CD9B74 /* Pods-ClothingApp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClothingApp-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ClothingApp-tvOS/Pods-ClothingApp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E0FCF14A8271E17A2DF9220E /* Pods-ClothingApp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClothingApp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ClothingApp-tvOSTests/Pods-ClothingApp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -128,6 +130,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				D99295DA22F3D301007D1572 /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -161,7 +164,6 @@
 				3C21C5098BBB77AA028E726A /* Pods-ClothingAppTests.debug.xcconfig */,
 				9A303B9BBA94B679E416E5BD /* Pods-ClothingAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -292,6 +294,9 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 4457DMU5QZ;
+					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -308,6 +313,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -336,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D99295DB22F3D302007D1572 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -628,6 +635,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 4457DMU5QZ;
 				INFOPLIST_FILE = ClothingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -647,6 +655,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4457DMU5QZ;
 				INFOPLIST_FILE = ClothingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "963703342569",
+    "firebase_url": "https://clothingapp-ef242.firebaseio.com",
+    "project_id": "clothingapp-ef242",
+    "storage_bucket": "clothingapp-ef242.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963703342569:android:c5e071a5900f5006",
+        "android_client_info": {
+          "package_name": "com.clothingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963703342569-lepnn7iu0hu0rdmas8t1g29u0apjar9b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6G0FDxReyc3pxjDLqK18b7DYLQyru1q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963703342569-lepnn7iu0hu0rdmas8t1g29u0apjar9b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "963703342569-v1c67fs9nfb5hi6277684nc8rqbh33ht.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.ClothingApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
