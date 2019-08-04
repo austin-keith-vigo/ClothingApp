@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "870899532598",
+    "firebase_url": "https://my-closet-c4c42.firebaseio.com",
+    "project_id": "my-closet-c4c42",
+    "storage_bucket": "my-closet-c4c42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870899532598:android:c9a9c8f3cac4108f",
+        "android_client_info": {
+          "package_name": "com.austinvigo.mycloset"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870899532598-epslq93a5rf1m51tkn8rjetj1os4ili3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoXRivQjogv56EDPuIcIyO3n1PpAfcwhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870899532598-epslq93a5rf1m51tkn8rjetj1os4ili3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "870899532598-15951t8m6ndh5kqgubt7bghaano3dfie.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.austinvigo.mycloset"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
