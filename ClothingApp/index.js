@@ -1,14 +1,4 @@
-import React from 'react';
-import { View, Text, AppRegistry } from 'react-native';
-
-const App = () => {
-  return(
-    <View>
-      <Text>
-        Hello
-      </Text>
-    </View>
-  );
-};
+import {AppRegistry} from 'react-native';
+import App from './src/App';
 
 AppRegistry.registerComponent('ClothingApp', () => App);
