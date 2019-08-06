@@ -5,6 +5,9 @@ import Header from './Header';
 import firebase from 'firebase';
 
 class LoginForm extends Component {
+  static navigationOptions={
+    title: 'Login',
+  };
 
   state = {email: '', password: ''}
 
@@ -21,7 +24,6 @@ class LoginForm extends Component {
   render() {
     return(
       <View>
-        <Header headerText="Login" />
         <InputField
           placeholder="email"
           value={this.state.email}
