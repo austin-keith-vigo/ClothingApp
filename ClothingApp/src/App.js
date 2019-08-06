@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import LoginForm from './components/LoginForm';
 import firebase from 'firebase';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-
+import Home from './components/Home';
 class App extends Component {
   componentWillMount() {
     firebase.initializeApp({
@@ -21,15 +21,20 @@ class App extends Component {
     return(
       <View>
         <LoginForm />
+        <Button
+          title="Navigate"
+          onPress={() => this.props.navigation.navigate("HomeScreen")}
+        />
       </View>
     );
   }
 }
 
 const AppNavigator = createStackNavigator({
-  Login: {
-    screen: App
-  }
+  LoginScreen: App,
+  HomeScreen: Home,
+},{
+  initialRouteName: "LoginScreen"
 });
 
 export default createAppContainer(AppNavigator);
