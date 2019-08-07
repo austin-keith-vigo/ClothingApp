@@ -10,18 +10,19 @@ class LoginForm extends Component {
 
   buttonPressed(){
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-    .catch(() => {
-      console.log('login failed');
-    })
-    .then(() => {
-      console.log('login succeeded');
-    });
+      .then(() => {
+        console.log('Login Successful');
+        this.props.navigationProp.navigate('Home');
+      })
+      .catch(() => {
+        console.log('login failed');
+      });
+
   }
 
   render() {
     return(
       <View>
-        <Header headerText="Login" />
         <InputField
           placeholder="email"
           value={this.state.email}
