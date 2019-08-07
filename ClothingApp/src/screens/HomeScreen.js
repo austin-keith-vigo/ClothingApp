@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
 class HomeScreen extends Component{
   static navigationOptions = {
@@ -13,7 +13,10 @@ class HomeScreen extends Component{
   render() {
     return(
       <View>
-        <Text>Home Screen</Text>
+        <Button
+          title="To Login"
+          onPress={() => {this.props.navigation.navigate('Login')}}
+        />
       </View>
     );
   }
