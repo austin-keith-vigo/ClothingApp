@@ -5,8 +5,8 @@ import Header from './Header';
 import firebase from 'firebase';
 
 class LoginForm extends Component {
-  static navigationOptions={
-    title: 'Login',
+  static navigationOptions = {
+    title: 'login'
   };
 
   state = {email: '', password: ''}

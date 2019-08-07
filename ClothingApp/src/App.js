@@ -4,7 +4,12 @@ import LoginForm from './components/LoginForm';
 import firebase from 'firebase';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Home from './components/Home';
+
 class App extends Component {
+  static navigationOptions = {
+    title: 'Login',
+  };
+
   componentWillMount() {
     firebase.initializeApp({
       apiKey: "AIzaSyC0JR6pVP6v0JcX0NwCm5f-ZsEYQe-Ydbk",
