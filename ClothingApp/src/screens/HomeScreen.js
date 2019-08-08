@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
-
+import { View, Text, Button, StyleSheet } from 'react-native';
+import MainClothingPieceContainer from './../components/MainClothingPieceContainer';
+import OtherClothingPieceContainer from './../components/OtherClothingPieceContainer'
 class HomeScreen extends Component{
   static navigationOptions = {
     title: 'Home',
@@ -12,14 +13,19 @@ class HomeScreen extends Component{
 
   render() {
     return(
-      <View>
-        <Button
-          title="To Login"
-          onPress={() => {this.props.navigation.navigate('Login')}}
-        />
+      <View style={styles.viewStyle}>
+        <MainClothingPieceContainer />
+        <MainClothingPieceContainer />
+        <OtherClothingPieceContainer />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  viewStyle: {
+    flex: 1
+  }
+});
 
 export default HomeScreen;
