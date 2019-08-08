@@ -4,6 +4,8 @@ import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 class ClothingPieceContainer extends Component {
 
+  state = { currentPiece:this.props.pieces[0] }
+
   viewStyle = {
     backgroundColor: "#800000",
     borderBottomWidth: 1,
@@ -14,12 +16,13 @@ class ClothingPieceContainer extends Component {
     return(
         <View style={this.viewStyle}>
           <GestureRecognizer
-            onSwipeRight={() => console.log("swiped right")}
-            onSwipeLeft={() => console.log("swiped left")}
+            onSwipeRight={() => this.setState({ currentPiece:this.props.pieces[1]}) }
+            onSwipeLeft={() => this.setState({ currentPiece:this.props.pieces[1]}) }
             style={{
               flex: 1
             }}
           >
+            <Text>{this.state.currentPiece}</Text>
           </GestureRecognizer>
         </View>
     );

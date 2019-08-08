@@ -18,9 +18,18 @@ class HomeScreen extends Component{
   render() {
     return(
       <View style={styles.viewStyle}>
-        <ClothingPieceContainer flex={2}/>
-        <ClothingPieceContainer flex={2}/>
-        <ClothingPieceContainer flex={1}/>
+        <ClothingPieceContainer
+          flex={2}
+          pieces={this.shirts}
+        />
+        <ClothingPieceContainer
+          flex={2}
+          pieces={this.jeans}
+        />
+        <ClothingPieceContainer
+          flex={1}
+          pieces={this.shoes}
+        />
       </View>
     );
   }
