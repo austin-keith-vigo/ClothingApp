@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, PanGestureHandler } from 'react-native';
 
 
 
@@ -13,7 +13,8 @@ class ClothingPieceContainer extends Component {
 
   render() {
     return(
-      <View style={this.viewStyle}></View>
+        <View style={this.viewStyle}></View>
+
     );
   }
 }
