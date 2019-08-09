@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, PanGestureHandler } from 'react-native';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import firebase from 'firebase';
 
 class ClothingPieceContainer extends Component {
 
-  state = { currentPiece: this.props.pieces[0], pieces: [] }
+  state = { currentPiece: 'none', pieces:[] }
   currentPieceIndex = 0;
 
+  componentWillMount(){
+    piecesData = [];
+    var that = this;
+    var databaseRef = firebase.database().ref('users/austinvigo/' + this.props.pieceType);
+    
+    databaseRef.once('value').then(function(snapshot){
+      snapshot.forEach(function(item){
+        piecesData.push(item.val());
+        that.setState( { currentPiece: piecesData[0], pieces: piecesData });
+      });
+    });
+  }
+
   nextPiece() {
-    if (this.currentPieceIndex == this.props.pieces.length - 1){
+    if (this.currentPieceIndex == this.state.pieces.length - 1){
       this.currentPieceIndex = 0;
     }
     else {
@@ -16,19 +30,19 @@ class ClothingPieceContainer extends Component {
     }
 
     console.log(this.currentPieceIndex);
-    this.setState({ currentPiece: this.props.pieces[this.currentPieceIndex] });
+    this.setState({ currentPiece: this.state.pieces[this.currentPieceIndex] });
   }
 
   previousPiece() {
     if (this.currentPieceIndex == 0) {
-      this.currentPieceIndex = this.props.pieces.length - 1;
+      this.currentPieceIndex = this.state.pieces.length - 1;
     }
     else {
       --this.currentPieceIndex;
     }
 
     console.log(this.currentPieceIndex);
-    this.setState({ currentPiece: this.props.pieces[this.currentPieceIndex] });
+    this.setState({ currentPiece: this.state.pieces[this.currentPieceIndex] });
   }
 
   viewStyle = {
