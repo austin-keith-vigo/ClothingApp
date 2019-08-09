@@ -4,7 +4,7 @@ import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 class ClothingPieceContainer extends Component {
 
-  state = { currentPiece: this.props.pieces[0] }
+  state = { currentPiece: this.props.pieces[0], pieces: [] }
   currentPieceIndex = 0;
 
   nextPiece() {
