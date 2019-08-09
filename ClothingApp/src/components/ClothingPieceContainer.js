@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, PanGestureHandler } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import firebase from 'firebase';
 
@@ -16,7 +16,7 @@ class ClothingPieceContainer extends Component {
     databaseRef.once('value').then(function(snapshot){
       snapshot.forEach(function(item){
         piecesData.push(item.val());
-        that.setState( { currentPiece: piecesData[0], pieces: piecesData });
+        that.setState( { currentPiece: piecesData[0], pieces: piecesData, currentPieceIndex: 0 });
       });
     });
   }
@@ -45,6 +45,21 @@ class ClothingPieceContainer extends Component {
     this.setState({ currentPiece: this.state.pieces[this.currentPieceIndex] });
   }
 
+  setImage(){
+    if(this.state.pieces.length == 0){
+      return <Text>nothing</Text>;
+    }
+
+    imageFilePath = './../' + this.props.pieceType + '/' + this.state.currentPiece;
+    
+    return(
+      <Image
+        source={require(imageFilePath)}
+        style={styles.imageStyle}
+      />
+    );
+  };
+
   viewStyle = {
     backgroundColor: "#800000",
     borderBottomWidth: 1,
@@ -61,6 +76,7 @@ class ClothingPieceContainer extends Component {
               flex: 1
             }}
           >
+            {this.setImage()}
             <Text>{this.state.currentPiece}</Text>
           </GestureRecognizer>
         </View>
@@ -68,5 +84,11 @@ class ClothingPieceContainer extends Component {
   }
 }
 
+const styles = StyleSheet.create({
+  imageStyle: {
+    flex: 1,
+    backgroundColor: "#800000"
+  }
+});
 
 export default ClothingPieceContainer;
