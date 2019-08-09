@@ -20,6 +20,22 @@ class ClothingPieceContainer extends Component {
     });
   }
 
+  getImageURLs(imageFileNames){
+    for (index = 0; index < imageFileNames.length; ++index) {
+      // console.log('./austinvigo/' +this.props.pieceType +'/' +imageFileNames[index]);
+      var storageRef = firebase.storage().ref('austinvigo/' +
+                                              this.props.pieceType +
+                                              '/' +
+                                              imageFileNames[index]);
+
+      storageRef.getDownloadURL().then((url) => {
+        console.log(url);
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+  }
+
   nextPiece() {
     if (this.currentPieceIndex == this.state.pieces.length - 1){
       this.currentPieceIndex = 0;
@@ -29,7 +45,9 @@ class ClothingPieceContainer extends Component {
     }
 
     console.log(this.currentPieceIndex);
-    this.setState({ currentPiece: this.state.pieces[this.currentPieceIndex] });
+    this.setState({
+      currentPiece: this.state.pieces[this.currentPieceIndex]
+    });
   }
 
   previousPiece() {
@@ -41,7 +59,9 @@ class ClothingPieceContainer extends Component {
     }
 
     console.log(this.currentPieceIndex);
-    this.setState({ currentPiece: this.state.pieces[this.currentPieceIndex] });
+    this.setState({
+      currentPiece: this.state.pieces[this.currentPieceIndex]
+    });
   }
 
   setImage(){
@@ -49,13 +69,8 @@ class ClothingPieceContainer extends Component {
       return <Text>nothing</Text>;
     }
 
-    imageFilePath = './../' + this.props.pieceType + '/' + this.state.currentPiece;
-
     return(
-      <Image
-        source={require(imageFilePath)}
-        style={styles.imageStyle}
-      />
+      <Text>nothing</Text>
     );
   };
 
