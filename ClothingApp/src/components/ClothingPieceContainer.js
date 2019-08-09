@@ -12,7 +12,7 @@ class ClothingPieceContainer extends Component {
     piecesData = [];
     var that = this;
     var databaseRef = firebase.database().ref('users/austinvigo/' + this.props.pieceType);
-    
+
     databaseRef.once('value').then(function(snapshot){
       snapshot.forEach(function(item){
         piecesData.push(item.val());
