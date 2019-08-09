@@ -11,10 +11,6 @@ class ClothingPieceContainer extends Component {
   componentWillMount(){
     var databaseRef = firebase.database().ref('users/austinvigo/' + this.props.pieceType);
 
-    databaseRef.once('value').then(function(snapshot){
-      snapshot.forEach(function(item){
-        piecesData.push(item.val());
-        that.setState( { currentPiece: piecesData[0], pieces: piecesData, currentPieceIndex: 0 });
     databaseRef.once('value').then((snapshot) => {
       Object.values(snapshot.val())
       this.setState({
@@ -54,7 +50,7 @@ class ClothingPieceContainer extends Component {
     }
 
     imageFilePath = './../' + this.props.pieceType + '/' + this.state.currentPiece;
-    
+
     return(
       <Image
         source={require(imageFilePath)}
