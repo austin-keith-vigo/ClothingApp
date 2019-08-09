@@ -9,14 +9,12 @@ class ClothingPieceContainer extends Component {
   currentPieceIndex = 0;
 
   componentWillMount(){
-    piecesData = [];
-    var that = this;
     var databaseRef = firebase.database().ref('users/austinvigo/' + this.props.pieceType);
-    
-    databaseRef.once('value').then(function(snapshot){
-      snapshot.forEach(function(item){
-        piecesData.push(item.val());
-        that.setState( { currentPiece: piecesData[0], pieces: piecesData });
+    databaseRef.once('value').then((snapshot) => {
+      Object.values(snapshot.val())
+      this.setState({
+        currentPiece: Object.values(snapshot.val())[0],
+        pieces: Object.values(snapshot.val())
       });
     });
   }
