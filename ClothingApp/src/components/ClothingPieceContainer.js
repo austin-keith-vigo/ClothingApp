@@ -5,7 +5,7 @@ import firebase from 'firebase';
 
 class ClothingPieceContainer extends Component {
 
-  state = { currentPiece: 'none', pieces:[] }
+  state = { currentPiece: 'none', pieces:[], imageURL: '' }
   currentPieceIndex = 0;
 
   componentWillMount(){
@@ -17,23 +17,19 @@ class ClothingPieceContainer extends Component {
         currentPiece: Object.values(snapshot.val())[0],
         pieces: Object.values(snapshot.val())
       });
+      this.getImageURL(this.state.currentPiece);
     });
   }
 
-  getImageURLs(imageFileNames){
-    for (index = 0; index < imageFileNames.length; ++index) {
-      // console.log('./austinvigo/' +this.props.pieceType +'/' +imageFileNames[index]);
-      var storageRef = firebase.storage().ref('austinvigo/' +
-                                              this.props.pieceType +
-                                              '/' +
-                                              imageFileNames[index]);
+  getImageURL(imageFileName){
+      var imageFilePath = 'austinvigo/'+this.props.pieceType+'/'+imageFileName;
+      var storageRef = firebase.storage().ref(imageFilePath);
 
       storageRef.getDownloadURL().then((url) => {
-        console.log(url);
+        this.setState({ imageURL: url });
       }).catch((error) => {
         console.log(error);
       });
-    }
   }
 
   nextPiece() {
@@ -44,10 +40,10 @@ class ClothingPieceContainer extends Component {
       ++this.currentPieceIndex;
     }
 
-    console.log(this.currentPieceIndex);
     this.setState({
       currentPiece: this.state.pieces[this.currentPieceIndex]
     });
+    this.getImageURL(this.state.currentPiece);
   }
 
   previousPiece() {
@@ -58,24 +54,25 @@ class ClothingPieceContainer extends Component {
       --this.currentPieceIndex;
     }
 
-    console.log(this.currentPieceIndex);
     this.setState({
       currentPiece: this.state.pieces[this.currentPieceIndex]
     });
+    this.getImageURL(this.state.currentPiece);
   }
 
   setImage(){
     if(this.state.pieces.length == 0){
       return <Text>nothing</Text>;
     }
-
     return(
-      <Text>nothing</Text>
+      <Image
+        source={{ uri: this.state.imageURL }}
+        style={styles.imageStyle}
+      />
     );
   };
 
   viewStyle = {
-    backgroundColor: "#800000",
     borderBottomWidth: 1,
     flex: this.props.flex
   };
@@ -100,8 +97,7 @@ class ClothingPieceContainer extends Component {
 
 const styles = StyleSheet.create({
   imageStyle: {
-    flex: 1,
-    backgroundColor: "#800000"
+    flex: 1
   }
 });
 
