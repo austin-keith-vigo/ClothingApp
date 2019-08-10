@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import ClothingPieceContainer from './../components/ClothingPieceContainer';
 
 class HomeScreen extends Component{
-  
+
   static navigationOptions = {
     title: 'Home',
     headerStyle: {
