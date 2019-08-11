@@ -1,76 +1,54 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import firebase from 'firebase';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 class ClothingPieceContainer extends Component {
-
-  state = { currentPiece: 'none', pieces:[], imageURL: '' }
-  currentPieceIndex = 0;
+  state={ gotAllURLs:false, currentImageURL:''};
+  imageFileNames=[];
+  imageURLs=[];
+  currentIndex=0;
 
   componentWillMount(){
-    var databaseRef = firebase.database().ref('users/austinvigo/' + this.props.pieceType);
+    var databaseFilePath = 'users/'+username+'/'+this.props.pieceType;
+    var databaseRef = firebase.database().ref(databaseFilePath);
 
-    databaseRef.once('value').then((snapshot) => {
-      Object.values(snapshot.val())
-      this.setState({
-        currentPiece: Object.values(snapshot.val())[0],
-        pieces: Object.values(snapshot.val())
-      });
-      this.getImageURL(this.state.currentPiece);
+    databaseRef.once('value').then((snapshot)=>{
+      this.imageFileNames=Object.values(snapshot.val());
+      this.getImageURLs();
     });
   }
 
-  getImageURL(imageFileName){
-      var imageFilePath = 'austinvigo/'+this.props.pieceType+'/'+imageFileName;
+  getImageURLs(){
+    var storageFilePath = username+'/'+this.props.pieceType;
+
+    for (index = 0; index < this.imageFileNames.length; index++) {
+      var imageFilePath = storageFilePath+'/'+this.imageFileNames[index];
       var storageRef = firebase.storage().ref(imageFilePath);
 
       storageRef.getDownloadURL().then((url) => {
-        this.setState({ imageURL: url });
-      }).catch((error) => {
-        console.log(error);
+        this.imageURLs.push(url);
+        if (this.imageURLs.length == this.imageFileNames.length){
+          this.setState({ gotAllURLs:true, currentImageURL:this.imageURLs[0] });
+          console.log(this.imageURLs);
+        }
       });
+    }
   }
 
-  nextPiece() {
-    if (this.currentPieceIndex == this.state.pieces.length - 1){
-      this.currentPieceIndex = 0;
+  renderImage(){
+    if (this.imageURLs.length == 0){
+      return <Text>No Image</Text>;
     }
     else {
-      ++this.currentPieceIndex;
+      return(
+        <Image
+          source={{ uri:this.state.currentImageURL }}
+          style={{flex: 1}}
+        />
+      );
     }
-
-    this.setState({
-      currentPiece: this.state.pieces[this.currentPieceIndex]
-    });
-    this.getImageURL(this.state.currentPiece);
   }
-
-  previousPiece() {
-    if (this.currentPieceIndex == 0) {
-      this.currentPieceIndex = this.state.pieces.length - 1;
-    }
-    else {
-      --this.currentPieceIndex;
-    }
-
-    this.setState({
-      currentPiece: this.state.pieces[this.currentPieceIndex]
-    });
-    this.getImageURL(this.state.currentPiece);
-  }
-
-  setImage(){
-    if(this.state.pieces.length == 0){
-      return <Text>nothing</Text>;
-    }
-    return(
-      <Image
-        source={{ uri: this.state.imageURL }}
-        style={styles.imageStyle}
-      />
-    );
-  };
 
   viewStyle = {
     borderBottomWidth: 1,
@@ -81,24 +59,35 @@ class ClothingPieceContainer extends Component {
     return(
         <View style={this.viewStyle}>
           <GestureRecognizer
-            onSwipeRight={() => this.previousPiece() }
-            onSwipeLeft={() => this.nextPiece() }
-            style={{
-              flex: 1
+            onSwipeRight={()=>{
+              if (this.state.gotAllURLs == true){
+                if (this.currentIndex <= 0){
+                  this.currentIndex = this.imageURLs.length - 1;
+                }
+                else {
+                  this.currentIndex--;
+                }
+                this.setState({ currentImageURL:this.imageURLs[this.currentIndex ]});
+              }
             }}
+            onSwipeLeft={()=>{
+              if (this.state.gotAllURLs == true){
+                if (this.currentIndex >= this.imageURLs.length - 1){
+                  this.currentIndex = 0;
+                }
+                else {
+                  this.currentIndex++;
+                }
+                this.setState({ currentImageURL:this.imageURLs[this.currentIndex] });
+              }
+            }}
+            style={{ flex: 1 }}
           >
-            {this.setImage()}
-            <Text>{this.state.currentPiece}</Text>
+            {this.renderImage()}
           </GestureRecognizer>
         </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  imageStyle: {
-    flex: 1
-  }
-});
 
 export default ClothingPieceContainer;
