@@ -4,6 +4,8 @@ import { View, Text } from 'react-native';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 
+username = 'austinvigo';
+
 const navigator = createStackNavigator(
   {
     Login: LoginScreen,
