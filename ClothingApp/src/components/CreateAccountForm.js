@@ -5,43 +5,33 @@ import {
   Button,
   AsyncStorage
 } from 'react-native';
-import InputField from './InputField';
-import Header from './Header';
 import firebase from 'firebase';
+import InputField from './InputField';
 
-class LoginForm extends Component {
+class CreateAccountForm extends Component {
 
-  componentWillMount(){
-    this.getUsername();
-  }
-
-  state = {email: '', password: ''}
+  state={ email:'', username:'', password:'' };
 
   buttonPressed(){
-    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => {
-        this.props.navigationProp.navigate('Home');
-      })
-      .catch(() => {
-        console.log('login failed');
-      });
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+    .then(()=>{
+      console.log('created');
+      this.storeUsername(this.state.username);
+      this.props.navigationProp.navigate('Home');
+    }).catch(function(error) {
+      console.log(error.message);
+    });
   }
 
-  async storeUsername() {
+  async storeUsername(username) {
     try {
-      await AsyncStorage.setItem('username','austinvigo');
+      await AsyncStorage.setItem('username', username);
     } catch(error) {
       console.log("something went wrong")
     }
   }
 
-  async getUsername(){
-    try {
-      let userNameData = await AsyncStorage.getItem('username');
-    } catch (error) {
-      console.log("something went wrong");
-    }
-  }
+  
 
   render() {
     return(
@@ -54,21 +44,26 @@ class LoginForm extends Component {
           secureTextEntry="false"
         />
         <InputField
+          placeholder="username"
+          value={this.state.username}
+          onChangeText={text => this.setState({ username: text })}
+          autocorrect="false"
+          secureTextEntry="false"
+        />
+        <InputField
           placeholder="password"
           value={this.state.password}
           onChangeText={text => this.setState({ password: text })}
           autocorrect="false"
           secureTextEntry="true"
         />
-
         <Button
-          title="Login"
+          title="Create Account"
           onPress={this.buttonPressed.bind(this)}
         />
-
       </View>
     );
   }
 }
 
-export default LoginForm;
+export default CreateAccountForm;

@@ -46,6 +46,12 @@ class LoginScreen extends Component {
           }}
           title="to UploadClothingPieceScreen"
         />
+        <Button
+          onPress={()=>{
+            this.props.navigation.navigate('CreateAccount');
+          }}
+          title="to CreateAccountScreen"
+        />
       </View>
     );
   }
