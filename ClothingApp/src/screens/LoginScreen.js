@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  AsyncStorage
+} from 'react-native';
 import LoginForm from './../components/LoginForm';
 import firebase from 'firebase';
 
