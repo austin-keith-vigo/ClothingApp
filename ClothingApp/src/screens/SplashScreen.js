@@ -26,6 +26,12 @@ class SplashScreen extends Component {
     this.loginUser(this.props.navigation);
   }
 
+/*
+Get the email and password from async storage and use that to login.
+If it fails at any step will jump to login. If login was successful
+will get the users' firebase storage bucket name and their username
+from the Realtime Database.
+*/
   async loginUser(navigationProp){
     try {
       let emailData = await AsyncStorage.getItem('email');
@@ -33,17 +39,27 @@ class SplashScreen extends Component {
 
       firebase.auth().signInWithEmailAndPassword(emailData, passwordData)
         .then(() => {
-          storageBucketName = firebase.auth().currentUser.uid;
-          console.log(storageBucketName);
-          navigationProp.navigate('Home');
+          userUID = firebase.auth().currentUser.uid;
+          this.getUsername(navigationProp, userUID);
         })
         .catch((error) => {
           console.log(error);
-          navigationProp.navigate('Login');
+
         });
     } catch (error) {
       navigationProp.navigate('Login');
     }
+  }
+
+  /*
+  Retrieves username from the realtime database. This is an asynchronus call
+  and home depends on the username.
+  Navigate is called in here because username depends on the completion of This
+  method call.
+  */
+  getUsername(navigationProp, uid){
+    var databaseRef = firebase.database().ref('users/')
+    navigationProp.navigate('Home');
   }
 
   render() {

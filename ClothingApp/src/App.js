@@ -8,7 +8,7 @@ import CreateAccountScreen from './screens/CreateAccountScreen';
 import SplashScreen from './screens/SplashScreen';
 
 username = 'austinvigo';
-storageBucketName = '';
+userUID = '';
 
 const navigator = createStackNavigator(
   {
