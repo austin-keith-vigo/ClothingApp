@@ -30,10 +30,16 @@ class LoginScreen extends Component {
       <View>
         <LoginForm navigationProp={this.props.navigation}/>
         <Button
-          onPress={() => {
+          onPress={()=>{
             this.props.navigation.navigate('Home')
           }}
           title="To Home"
+        />
+        <Button
+          onPress={()=>{
+            this.props.navigation.navigate('UploadClothingPiece');
+          }}
+          title="to UploadClothingPieceScreen"
         />
       </View>
     );
