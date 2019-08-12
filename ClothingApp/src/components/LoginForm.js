@@ -1,23 +1,46 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  AsyncStorage
+} from 'react-native';
 import InputField from './InputField';
 import Header from './Header';
 import firebase from 'firebase';
 
 class LoginForm extends Component {
 
+  componentWillMount(){
+    this.getUsername();
+  }
+
   state = {email: '', password: ''}
 
   buttonPressed(){
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        console.log('Login Successful');
         this.props.navigationProp.navigate('Home');
       })
       .catch(() => {
         console.log('login failed');
       });
+  }
 
+  async storeUsername() {
+    try {
+      await AsyncStorage.setItem('username','austinvigo');
+    } catch(error) {
+      console.log("something went wrong")
+    }
+  }
+
+  async getUsername(){
+    try {
+      let userNameData = await AsyncStorage.getItem('username');
+    } catch (error) {
+      console.log("something went wrong");
+    }
   }
 
   render() {
