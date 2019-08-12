@@ -7,7 +7,7 @@ import UploadClothingPieceScreen from './screens/UploadClothingPieceScreen';
 import CreateAccountScreen from './screens/CreateAccountScreen';
 import SplashScreen from './screens/SplashScreen';
 
-var username = 'austinvigo';
+username = 'austinvigo';
 
 const navigator = createStackNavigator(
   {
