@@ -33,6 +33,8 @@ class SplashScreen extends Component {
 
       firebase.auth().signInWithEmailAndPassword(emailData, passwordData)
         .then(() => {
+          storageBucketName = firebase.auth().currentUser.uid;
+          console.log(storageBucketName);
           navigationProp.navigate('Home');
         })
         .catch((error) => {
