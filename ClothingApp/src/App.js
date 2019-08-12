@@ -1,4 +1,4 @@
-import { createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import LoginScreen from './screens/LoginScreen';
@@ -23,14 +23,5 @@ const navigator = createStackNavigator(
   }
 );
 
-const TabScreens = createBottomTabNavigator({
-  Login: {
-    screen: LoginScreen
-  },
-  Home: {
-    screen: HomeScreen
-  },
-});
-
-const App = createAppContainer(TabScreens);
+const App = createAppContainer(navigator);
 export default App;
