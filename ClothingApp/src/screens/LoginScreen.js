@@ -9,10 +9,6 @@ import LoginForm from './../components/LoginForm';
 
 class LoginScreen extends Component {
 
-  componentWillMount() {
-
-  }
-
   static navigationOptions = {
     title: 'Home',
     headerStyle: {

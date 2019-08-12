@@ -44,7 +44,7 @@ from the Realtime Database.
         })
         .catch((error) => {
           console.log(error);
-
+          navigationProp.navigate('Login');
         });
     } catch (error) {
       navigationProp.navigate('Login');
@@ -58,7 +58,11 @@ from the Realtime Database.
   method call.
   */
   getUsername(navigationProp, uid){
-    var databaseRef = firebase.database().ref('users/')
+    console.log(uid);
+    var databaseRef = firebase.database().ref('users/'+uid);
+    databaseRef.once('value').then((snapshot)=>{
+      console.log(snapshot.val());
+    });
     navigationProp.navigate('Home');
   }
 

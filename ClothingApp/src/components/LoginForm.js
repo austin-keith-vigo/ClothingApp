@@ -20,6 +20,7 @@ class LoginForm extends Component {
   buttonPressed(){
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
+
         this.props.navigationProp.navigate('Home');
       })
       .catch(() => {
