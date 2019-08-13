@@ -48,6 +48,7 @@ from the Realtime Database.
           navigationProp.navigate('Login');
         });
     } catch (error) {
+      console.log(error)
       navigationProp.navigate('Login');
     }
   }

@@ -20,8 +20,8 @@ class LoginForm extends Component {
         this.setUsernameAndUserUID(this.props.navigationProp);
         // this.props.navigationProp.navigate('Home');
       })
-      .catch(() => {
-        console.log('login failed');
+      .catch((error) => {
+        console.log(error);
       });
   }
 
@@ -41,7 +41,7 @@ class LoginForm extends Component {
   */
   setUsernameAndUserUID(navigationProp){
     userUID = firebase.auth().currentUser.uid;
-    var databaseRef = firebase.database().ref('users/'+uid);
+    var databaseRef = firebase.database().ref('users/'+userUID);
     databaseRef.once('value').then((snapshot)=>{
       username = snapshot.val()['username'];
     });
