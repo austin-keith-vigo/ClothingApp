@@ -27,7 +27,7 @@ class ClothingPieceContainer extends Component {
   }
 
   getImageURLs(){
-    var storageFilePath = username+'/'+this.props.pieceType;
+    var storageFilePath = userUID+'/'+this.props.pieceType;
 
     for (index = 0; index < this.imageFileNames.length; index++) {
       var imageFilePath = storageFilePath+'/'+this.imageFileNames[index];
