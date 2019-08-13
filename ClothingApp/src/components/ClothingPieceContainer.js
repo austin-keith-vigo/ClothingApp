@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  AsyncStorage
+} from 'react-native';
 import firebase from 'firebase';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
@@ -10,7 +17,8 @@ class ClothingPieceContainer extends Component {
   currentIndex=0;
 
   componentWillMount(){
-    var databaseFilePath = 'users/'+username+'/'+this.props.pieceType;
+    console.log(userUID);
+    var databaseFilePath = 'users/'+userUID+'/'+this.props.pieceType;
     var databaseRef = firebase.database().ref(databaseFilePath);
 
     databaseRef.once('value').then((snapshot)=>{
@@ -20,7 +28,7 @@ class ClothingPieceContainer extends Component {
   }
 
   getImageURLs(){
-    var storageFilePath = username+'/'+this.props.pieceType;
+    var storageFilePath = userUID+'/'+this.props.pieceType;
 
     for (index = 0; index < this.imageFileNames.length; index++) {
       var imageFilePath = storageFilePath+'/'+this.imageFileNames[index];
