@@ -16,18 +16,8 @@ class ClothingPieceContainer extends Component {
   imageURLs=[];
   currentIndex=0;
 
-  async getUsername(){
-    try {
-      let userNameData = await AsyncStorage.getItem('username');
-      console.log(userNameData);
-    } catch (error) {
-      console.log("something went wrong");
-    }
-  }
-
   componentWillMount(){
-    this.getUsername();
-    var databaseFilePath = 'users/'+username+'/'+this.props.pieceType;
+    var databaseFilePath = 'users/'+userUID+'/'+this.props.pieceType;
     var databaseRef = firebase.database().ref(databaseFilePath);
 
     databaseRef.once('value').then((snapshot)=>{

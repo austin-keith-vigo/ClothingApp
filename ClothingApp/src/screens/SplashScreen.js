@@ -40,9 +40,8 @@ from the Realtime Database.
       console.log(emailData, passwordData);
       firebase.auth().signInWithEmailAndPassword(emailData, passwordData)
         .then(() => {
-          // userUID = firebase.auth().currentUser.uid;
-          // this.getUsername(navigationProp, userUID);
-          navigationProp.navigate('Home');
+          userUID = firebase.auth().currentUser.uid;
+          this.getUsername(navigationProp, userUID);
         })
         .catch((error) => {
           console.log(error);
@@ -63,7 +62,7 @@ from the Realtime Database.
     console.log(uid);
     var databaseRef = firebase.database().ref('users/'+uid);
     databaseRef.once('value').then((snapshot)=>{
-      console.log(snapshot.val());
+      username = snapshot.val()['username'];
     });
     navigationProp.navigate('Home');
   }

@@ -15,26 +15,22 @@ class CreateAccountForm extends Component {
   buttonPressed(){
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
     .then(()=>{
-      console.log('created');
-      this.storeLoginCredentials(this.state.username, this.state.email, this.state.password);
+      username = this.state.username;
+      this.storeLoginCredentials(this.state.email, this.state.password);
       this.props.navigationProp.navigate('Home');
     }).catch(function(error) {
       console.log(error.message);
     });
   }
 
-  async storeLoginCredentials(username, email, password) {
-    console.log(username,email,password);
+  async storeLoginCredentials(email, password) {
     try {
-      await AsyncStorage.setItem('username', username);
       await AsyncStorage.setItem('email', email);
       await AsyncStorage.setItem('password', password);
     } catch(error) {
       console.log("something went wrong")
     }
   }
-
-
 
   render() {
     return(
