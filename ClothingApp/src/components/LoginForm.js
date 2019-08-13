@@ -11,16 +11,12 @@ import firebase from 'firebase';
 
 class LoginForm extends Component {
 
-  componentWillMount(){
-    this.getUsername();
-  }
-
   state = {email: '', password: ''}
 
   buttonPressed(){
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-
+        this.storeLoginCredentials(this.state.email, this.state.password);
         this.props.navigationProp.navigate('Home');
       })
       .catch(() => {
@@ -28,22 +24,15 @@ class LoginForm extends Component {
       });
   }
 
-  async storeUsername() {
+  async storeLoginCredentials(email, password) {
+    console.log(username,email,password);
     try {
-      await AsyncStorage.setItem('username','austinvigo');
+      await AsyncStorage.setItem('email', email);
+      await AsyncStorage.setItem('password', password);
     } catch(error) {
       console.log("something went wrong")
     }
   }
-
-  async getUsername(){
-    try {
-      let userNameData = await AsyncStorage.getItem('username');
-    } catch (error) {
-      console.log("something went wrong");
-    }
-  }
-
   render() {
     return(
       <View>

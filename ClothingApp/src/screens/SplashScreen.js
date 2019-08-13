@@ -37,10 +37,12 @@ from the Realtime Database.
       let emailData = await AsyncStorage.getItem('email');
       let passwordData = await AsyncStorage.getItem('password');
 
+      console.log(emailData, passwordData);
       firebase.auth().signInWithEmailAndPassword(emailData, passwordData)
         .then(() => {
-          userUID = firebase.auth().currentUser.uid;
-          this.getUsername(navigationProp, userUID);
+          // userUID = firebase.auth().currentUser.uid;
+          // this.getUsername(navigationProp, userUID);
+          navigationProp.navigate('Home');
         })
         .catch((error) => {
           console.log(error);
