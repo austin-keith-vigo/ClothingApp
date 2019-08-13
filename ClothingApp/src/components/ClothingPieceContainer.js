@@ -17,6 +17,7 @@ class ClothingPieceContainer extends Component {
   currentIndex=0;
 
   componentWillMount(){
+    console.log(userUID);
     var databaseFilePath = 'users/'+userUID+'/'+this.props.pieceType;
     var databaseRef = firebase.database().ref(databaseFilePath);
 

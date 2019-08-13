@@ -16,7 +16,9 @@ class CreateAccountForm extends Component {
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
     .then(()=>{
       username = this.state.username;
+      userID = firebase.auth().currentUser.uid;
       this.storeLoginCredentials(this.state.email, this.state.password);
+      this.updateFirebaseDatabase();
       this.props.navigationProp.navigate('Home');
     }).catch(function(error) {
       console.log(error.message);
@@ -30,6 +32,18 @@ class CreateAccountForm extends Component {
     } catch(error) {
       console.log("something went wrong")
     }
+  }
+
+  /*
+  Set the new user's database information
+  */
+  updateFirebaseDatabase(){
+    firebase.database().ref('users/' + userID).set({
+      username: username,
+      shirts: "shirts",
+      jeans: "jeans",
+      shoes: "shoes"
+    });
   }
 
   render() {

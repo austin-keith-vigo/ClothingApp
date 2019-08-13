@@ -59,7 +59,6 @@ from the Realtime Database.
   method call.
   */
   getUsername(navigationProp, uid){
-    console.log(uid);
     var databaseRef = firebase.database().ref('users/'+uid);
     databaseRef.once('value').then((snapshot)=>{
       username = snapshot.val()['username'];

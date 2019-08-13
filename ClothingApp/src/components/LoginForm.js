@@ -17,7 +17,8 @@ class LoginForm extends Component {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         this.storeLoginCredentials(this.state.email, this.state.password);
-        this.props.navigationProp.navigate('Home');
+        this.setUsernameAndUserUID(this.props.navigationProp);
+        // this.props.navigationProp.navigate('Home');
       })
       .catch(() => {
         console.log('login failed');
@@ -25,7 +26,6 @@ class LoginForm extends Component {
   }
 
   async storeLoginCredentials(email, password) {
-    console.log(username,email,password);
     try {
       await AsyncStorage.setItem('email', email);
       await AsyncStorage.setItem('password', password);
@@ -33,6 +33,21 @@ class LoginForm extends Component {
       console.log("something went wrong")
     }
   }
+
+  /*
+  Sets the username and userUID which is used for getting the person's data.
+  the app navigates to the home screen after this is done because the homescreen,
+  depends for the asynnchronus function to complete.
+  */
+  setUsernameAndUserUID(navigationProp){
+    userUID = firebase.auth().currentUser.uid;
+    var databaseRef = firebase.database().ref('users/'+uid);
+    databaseRef.once('value').then((snapshot)=>{
+      username = snapshot.val()['username'];
+    });
+    navigationProp.navigate('Home');
+  }
+
   render() {
     return(
       <View>
