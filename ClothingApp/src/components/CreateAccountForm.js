@@ -46,6 +46,13 @@ class CreateAccountForm extends Component {
     });
   }
 
+  /*
+  Create the user's storage folders on firebase
+  */
+  updateFirebaseStorage(){
+
+  }
+
   render() {
     return(
       <View>
