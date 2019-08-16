@@ -9,7 +9,6 @@ import SplashScreen from './screens/SplashScreen';
 
 username = 'austinvigo';
 userUID = '';
-
 const navigator = createStackNavigator(
   {
     Login: LoginScreen,
