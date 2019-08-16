@@ -46,7 +46,7 @@ class ClothingPieceContainer extends Component {
 
   renderImage(){
     if (this.imageURLs.length == 0){
-      return <Text>No Image</Text>;
+      return <Image source={require('./../images/defaultImage.png')}/>
     }
     else {
       return(
