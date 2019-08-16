@@ -64,7 +64,7 @@ from the Realtime Database.
     databaseRef.once('value').then((snapshot)=>{
       username = snapshot.val()['username'];
     });
-    navigationProp.navigate('UploadClothingPiece');
+    navigationProp.navigate('Home');
   }
 
   render() {
