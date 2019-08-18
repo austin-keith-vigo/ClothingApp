@@ -15,20 +15,21 @@ class HomeScreen extends Component{
 
   render() {
     return(
-      <View style={styles.viewStyle}>
-        <ClothingPieceContainer
-          flex={2}
-          pieceType='shirts'
-        />
-        <ClothingPieceContainer
-          flex={2}
-          pieceType='jeans'
-        />
-        <ClothingPieceContainer
-          flex={1}
-          pieceType='shoes'
-        />
-      </View>
+      <Text>hello</Text>
+      // <View style={styles.viewStyle}>
+      //   <ClothingPieceContainer
+      //     flex={2}
+      //     pieceType='shirts'
+      //   />
+      //   <ClothingPieceContainer
+      //     flex={2}
+      //     pieceType='jeans'
+      //   />
+      //   <ClothingPieceContainer
+      //     flex={1}
+      //     pieceType='shoes'
+      //   />
+      // </View>
     );
   }
 }
