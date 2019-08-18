@@ -72,6 +72,9 @@ class UploadClothingPieceScreen extends Component{
     });
   };
 
+  uploadImage = () => {
+  };
+
   render() {
     return(
       <View>
@@ -88,10 +91,16 @@ class UploadClothingPieceScreen extends Component{
         </TouchableOpacity>
         {/** Display selected image */}
         {this.state.imgSource ? (
-         <Image
-           source={this.state.imgSource}
-           style={styles.image}
-         />
+          <View>
+            <Image
+              source={this.state.imgSource}
+              style={styles.image}
+            />
+            <Button
+              title="upload image"
+              onPress={this.uploadImage()}
+            />
+          </View>
         ) : (
          <Text>Select an Image!</Text>
         )}
