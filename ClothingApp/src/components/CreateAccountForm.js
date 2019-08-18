@@ -40,9 +40,9 @@ class CreateAccountForm extends Component {
   updateFirebaseDatabase(){
     firebase.database().ref('users/' + userID).set({
       username: username,
-      shirts: "shirts",
-      jeans: "jeans",
-      shoes: "shoes"
+      shirts: { },
+      jeans: { },
+      shoes: { }
     });
   }
 
