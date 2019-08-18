@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import UploadClothingPieceScreen from './screens/UploadClothingPieceScreen';
 import CreateAccountScreen from './screens/CreateAccountScreen';
 import SplashScreen from './screens/SplashScreen';
+import SettingScreen from './screens/SettingScreen';
 
 username = 'austinvigo';
 userUID = '';
@@ -15,10 +16,11 @@ const navigator = createStackNavigator(
     Home: HomeScreen,
     UploadClothingPiece: UploadClothingPieceScreen,
     CreateAccount: CreateAccountScreen,
-    Splash: SplashScreen
+    Splash: SplashScreen,
+    Setting: SettingScreen
   },
   {
-    initialRouteName: 'Splash',
+    initialRouteName: "Splash",
   }
 );
 

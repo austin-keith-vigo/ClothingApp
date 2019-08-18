@@ -39,6 +39,12 @@ class LoginScreen extends Component {
           }}
           title="to CreateAccountScreen"
         />
+        <Button
+          onPress={()=>{
+            this.props.navigation.navigate('Setting');
+          }}
+          title="to SettingScreen"
+        />
       </View>
     );
   }
