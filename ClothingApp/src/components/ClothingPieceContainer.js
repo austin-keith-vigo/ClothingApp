@@ -21,26 +21,14 @@ class ClothingPieceContainer extends Component {
     var databaseRef = firebase.database().ref(databaseFilePath);
 
     databaseRef.once('value').then((snapshot)=>{
-      this.imageFileNames=Object.values(snapshot.val());
-      this.getImageURLs();
+      clothingPieceObject = Object.values(snapshot.val());
+      this.imageFileNames = Object.keys(snapshot.val());
+      for (index = 0; index < this.imageFileNames.length; ++index){
+        const currentImage = this.imageFileNames[index];
+        this.imageURLs.push(snapshot.val()[currentImage]['downloadURL']);
+      }
+      this.setState({ gotAllURLs:true, currentImageURL:this.imageURLs[0] });
     });
-  }
-
-  getImageURLs(){
-    var storageFilePath = userUID+'/'+this.props.pieceType;
-
-    for (index = 0; index < this.imageFileNames.length; index++) {
-      var imageFilePath = storageFilePath+'/'+this.imageFileNames[index];
-      var storageRef = firebase.storage().ref(imageFilePath);
-
-      storageRef.getDownloadURL().then((url) => {
-        this.imageURLs.push(url);
-        if (this.imageURLs.length == this.imageFileNames.length){
-          this.setState({ gotAllURLs:true, currentImageURL:this.imageURLs[0] });
-          console.log(this.imageURLs);
-        }
-      });
-    }
   }
 
   renderImage(){

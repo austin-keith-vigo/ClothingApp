@@ -63,26 +63,7 @@ from the Realtime Database.
     var databaseRef = firebase.database().ref('users/'+uid);
     databaseRef.once('value').then((snapshot)=>{
       username = snapshot.val()['username'];
-      this.getAllClothingPieces();
-      // navigationProp.navigate('Home');
-    });
-
-  }
-
-  /*
-  Gets all the downloadURL's for each user and stores them into the async
-  storage. If the piece is not included already it will add it.
-  */
-  getAllClothingPieces(){
-    var databaseRef = firebase.database().ref('users/' + userUID);
-    databaseRef.once('value').then((snapshot)=>{
-      const keys = Object.keys(snapshot.val());
-      for(index = 0; index < keys.length; ++index){
-        const pieceType = keys[index];
-        const downloadURLs = Object.values(snapshot.val()[pieceType]);
-        const pieceNames = Object.keys(snapshot.val()[pieceType]);
-
-      }
+      navigationProp.navigate('Home');
     });
   }
 
