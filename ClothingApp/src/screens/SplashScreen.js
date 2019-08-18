@@ -63,8 +63,8 @@ from the Realtime Database.
     var databaseRef = firebase.database().ref('users/'+uid);
     databaseRef.once('value').then((snapshot)=>{
       username = snapshot.val()['username'];
+      navigationProp.navigate('Home');
     });
-    navigationProp.navigate('Home');
   }
 
   render() {
