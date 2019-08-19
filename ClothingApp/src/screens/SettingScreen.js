@@ -18,9 +18,16 @@ class SettingScreen extends Component {
   render() {
     return (
       <View>
+        <Text>IM HERE</Text>
         <Button
           title = "Sign Out"
           onPress = {this.buttonPressed.bind(this)}
+        />
+        <Button
+          title = "Upload Clothing"
+          onPress = {() =>{
+            this.props.navigation.navigate('UploadClothingPiece')
+          }}
         />
       </View>
     );
