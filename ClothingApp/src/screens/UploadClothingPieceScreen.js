@@ -36,24 +36,25 @@ class UploadClothingPieceScreen extends Component{
   Handles uploading a new file to the user's firebase storage
   */
   uploadClothingPiece(){
-    var newClothingPieceType = 'accesories';
+    var newClothingPieceType = 'shirts';
     var imageFileName = 'newAccessory.jpeg';
 
     //Update Database
     var databaseRef = firebase.database().ref("users/" + userUID + '/' + newClothingPieceType);
-    databaseRef.set({
-      item0: imageFileName
-    });
-
-    //Update storage
-    var storageRef = firebase.storage().ref(userUID + '/' + newClothingPieceType+'/'+imageFileName);
-    var file = new Blob([newClothingPieceType],{type:'text/plain'});
-    storageRef.put(file)
-    .then(()=>{
-      console.log("done");
-    })
-    .catch((error)=>{
-      console.log(error);
+    databaseRef.once('value').then((snapshot)=>{
+      var allImages = Object.keys(snapshot.val());
+        if (allImages.includes(imageFileName)){
+          console.log('already exists');
+        }
+        else{
+          databaseRef.set({
+            imageFileName: {
+              downloadURL: this.state.imgSource['uri']
+            }
+          });
+          console.log('set');
+        }
+        console.log(allImages);
     });
   }
 
@@ -79,10 +80,6 @@ class UploadClothingPieceScreen extends Component{
     return(
       <View>
         <Text>UploadClothingPieceScreen</Text>
-        <Button
-          title="new clothing piece"
-          onPress={this.uploadClothingPiece}
-        />
         {/** Select Image button */}
         <TouchableOpacity style={styles.btn} onPress={this.pickImage}>
           <View>
@@ -98,7 +95,7 @@ class UploadClothingPieceScreen extends Component{
             />
             <Button
               title="upload image"
-              onPress={this.uploadImage()}
+              onPress={this.uploadClothingPiece()}
             />
           </View>
         ) : (
