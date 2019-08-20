@@ -19,11 +19,6 @@ own navigation component and can be nested within other navigation components
 to be used as screens.
 */
 const AppTabNavigator = createBottomTabNavigator({
-  Login:  {
-    screen: LoginScreen,
-    navigationOptions: ({navigation}) => ({
-      title: "Login"
-    })},
   Home:   {screen: HomeScreen,
     navigationOptions: ({navigation}) => ({
       title: "Home"
@@ -54,7 +49,8 @@ const StackNavigator = createStackNavigator({
     }                       //can be moved to individual tab components
     },
   Splash: {screen: SplashScreen},
-  CreateAccount: {screen: CreateAccountScreen}
+  CreateAccount: {screen: CreateAccountScreen},
+  Login: {screen: LoginScreen}
   },
   {
     initialRouteName: "Splash" //app must load splashscreen first in order
