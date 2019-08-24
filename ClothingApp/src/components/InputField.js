@@ -1,33 +1,30 @@
-import React from 'react';
-import { View, TextInput, Text } from 'react-native';
+import React, { Component} from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet
+} from 'react-native';
 
-const InputField = (props) => {
-  const {
-    placeholder,
-    value,
-    onChangeText,
-    autocorrect,
-    secureTextEntry
-  } = props;
-  return(
-    <View>
-      <TextInput
-        style={styles.inputStyle}
-        placeholder={placeholder}
-        value={value}
-        onChangeText={onChangeText}
-        autocorrect={autocorrect}
-        secureTextEntry={secureTextEntry}
-      />
-    </View>
-  );
-};
-
-const styles={
-  inputStyle:{
-    height: 40,
-    fontSize: 18,
+class InputField extends Component{
+  render(){
+    return(
+      <View>
+        <TextInput
+          style={styles.textInputStyle}
+          placeholder={this.props.placeholder}
+          onChangeText={this.props.onChangeText}
+        />
+      </View>
+    );
   }
 }
+
+const styles = StyleSheet.create({
+  textInputStyle:{
+    width: 200,
+    height: 20
+  }
+});
 
 export default InputField;
