@@ -5,7 +5,7 @@ import {
   Button,
   StyleSheet
 } from 'react-native';
-import InputField from './InputField'
+import InputField from './InputField';
 
 class EmailPasswordForm extends Component {
 
