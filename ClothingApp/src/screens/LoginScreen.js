@@ -7,6 +7,13 @@ import {
 import EmailPasswordForm from './../components/EmailPasswordForm';
 
 class LoginScreen extends Component {
+  static navigationOptions = {
+    title: 'Login',
+    headerStyle: {
+      height: 0,
+      borderBottomWidth: 0
+    }
+  };
   /*
   Will login in the user into firebase. Gets the email and password from
   the email password form.
