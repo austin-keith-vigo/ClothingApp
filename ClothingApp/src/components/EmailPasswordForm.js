@@ -11,6 +11,11 @@ class EmailPasswordForm extends Component {
 
   state = { email: '', password: '' };
 
+  renderErrorMessage(){
+    if(this.props.displayErrorMessage == true){
+      return <Text>{this.props.errorMessage}</Text>
+    }
+  }
   render(){
     return(
       <View style={styles.viewStyle}>
@@ -26,18 +31,15 @@ class EmailPasswordForm extends Component {
           title='Submit'
           onPress={()=>{this.props.loginUser(this.state.email, this.state.password)}}
         />
+        {this.renderErrorMessage()}
       </View>
     );
   }
 }
 
-
-
 const styles = StyleSheet.create({
   viewStyle:{
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'powderblue'
+    justifyContent: 'center'
   }
 })
 
