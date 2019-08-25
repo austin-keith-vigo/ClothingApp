@@ -31,13 +31,9 @@ class EmailPasswordForm extends Component {
   }
 }
 
-
-
 const styles = StyleSheet.create({
   viewStyle:{
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'powderblue'
+    justifyContent: 'center'
   }
 })
 
