@@ -2,52 +2,42 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Button,
-  AsyncStorage
+  StyleSheet
 } from 'react-native';
-import LoginForm from './../components/LoginForm';
+import EmailPasswordForm from './../components/EmailPasswordForm';
 
 class LoginScreen extends Component {
-
   static navigationOptions = {
-    title: 'Home',
+    title: 'Login',
     headerStyle: {
       height: 0,
       borderBottomWidth: 0
     }
   };
+  /*
+  Will login in the user into firebase. Gets the email and password from
+  the email password form.
+  */
+  loginUser(email, password){
+    console.log(email);
+    console.log(password);
+  }
 
   render() {
     return(
-      <View>
-        <LoginForm navigationProp={this.props.navigation}/>
-        <Button
-          onPress={()=>{
-            this.props.navigation.navigate('Home')
-          }}
-          title="To Home"
-        />
-        <Button
-          onPress={()=>{
-            this.props.navigation.navigate('UploadClothingPiece');
-          }}
-          title="to UploadClothingPieceScreen"
-        />
-        <Button
-          onPress={()=>{
-            this.props.navigation.navigate('CreateAccount');
-          }}
-          title="to CreateAccountScreen"
-        />
-        <Button
-          onPress={()=>{
-            this.props.navigation.navigate('Setting');
-          }}
-          title="to SettingScreen"
+      <View style={styles.viewStyle}>
+        <EmailPasswordForm
+          loginUser={this.loginUser}
         />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  viewStyle:{
+    flex: 1
+  }
+});
 
 export default LoginScreen;
