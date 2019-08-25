@@ -6,14 +6,28 @@ import {
   StyleSheet
 } from 'react-native';
 import InputField from './InputField';
+import Dialog from 'react-native-dialog';
 
 class EmailPasswordForm extends Component {
 
-  state = { email: '', password: '' };
+  state = { email: '', password: '', popupOpen: false};
 
   renderErrorMessage(){
     if(this.props.displayErrorMessage == true){
-      return <Text>{this.props.errorMessage}</Text>
+      return(
+        <Dialog.Container visible = {true}>
+          <Dialog.Title>Account delete</Dialog.Title>
+          <Dialog.Description>
+            {this.props.errorMessage}
+          </Dialog.Description>
+          <Dialog.Button
+            label="Close"
+            onPress = {()=>{
+              console.log('close popup');
+            }}
+          />
+        </Dialog.Container>
+      )
     }
   }
   render(){
