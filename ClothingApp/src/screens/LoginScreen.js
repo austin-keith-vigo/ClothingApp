@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  ActivityIndicator
 } from 'react-native';
 import EmailPasswordForm from './../components/EmailPasswordForm';
 import firebase from 'firebase';
@@ -17,20 +18,21 @@ class LoginScreen extends Component {
     }
   };
 
-  state = { error: false, errorMessage: '' };
+  state = { error: false, errorMessage: '', logginIn: false };
 
   /*
   Will login in the user into firebase. Gets the email and password from
   the email password form.
   */
   loginUser(email, password){
+    this.setState({logginIn: true});
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(()=>{
       this.props.navigation.navigate('Home');
     })
     .catch((error)=>{
       //Display error message with conditional rendering
-      this.setState({ error : true, errorMessage: error.message });
+      this.setState({ error : true, errorMessage: error.message, logginIn: false });
     });
   }
 
@@ -55,12 +57,29 @@ class LoginScreen extends Component {
       )
     }
   }
-  render() {
-    return(
-      <View style={styles.viewStyle}>
+
+  /*
+  Conditional Rendering to determine display an acivity monitor when the system
+  is loggin in
+  */
+  renderActivityMonitor(){
+    if(this.state.logginIn == false){
+      return(
         <EmailPasswordForm
           loginUser={this.loginUser.bind(this)}
         />
+      );
+    }
+    else{
+      return(
+        <ActivityIndicator size="large" color="#0000ff" />
+      );
+    }
+  }
+  render() {
+    return(
+      <View style={styles.viewStyle}>
+        {this.renderActivityMonitor()}
         {this.renderErrorMessage()}
       </View>
     );
