@@ -75,7 +75,6 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1
   },
-  //try to use imageBackground component
   imageStyle: {
     height: 100,
     width: 100
