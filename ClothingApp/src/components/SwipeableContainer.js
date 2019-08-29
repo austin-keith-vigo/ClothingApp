@@ -14,6 +14,7 @@ class SwipeableContainer extends Component {
   };
 
   downloadURLs = [];
+  indexVar = 0;
 
 
   constructor(props){
@@ -46,14 +47,24 @@ class SwipeableContainer extends Component {
     });
   }
 
+  onSwipeRight(){
 
+  }
+  onSwipeLeft(){
+
+  }
 
   render() {
     return(
       <GestureRecognizer
         style = {styles.gestureRecognizerStyle}
         onSwipeRight={()=>{
-          this.setState({ imageSource: 'https://firebasestorage.googleapis.com/v0/b/my-closet-c4c42.appspot.com/o/button_up_shirt.jpeg?alt=media&token=40a69c28-cf7c-46ff-b178-bf774362833b'})
+          this.indexVar = (this.indexVar + 1) % this.downloadURLs.length;
+          this.setState({ imageSource : this.downloadURLs[this.indexVar] });
+        }}
+        onSwipeLeft={()=>{
+          this.indexVar = Math.abs(this.indexVar - 1) % this.downloadURLs.length;
+          this.setState({ imageSource : this.downloadURLs[this.indexVar] });
         }}
       >
         <Image
@@ -71,9 +82,10 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1
   },
+  //try to use imageBackground component
   imageStyle: {
-    height: 40,
-    width: 40
+    height: 100,
+    width: 100
   }
 });
 
