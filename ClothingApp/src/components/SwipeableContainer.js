@@ -47,13 +47,6 @@ class SwipeableContainer extends Component {
     });
   }
 
-  onSwipeRight(){
-
-  }
-  onSwipeLeft(){
-
-  }
-
   render() {
     return(
       <GestureRecognizer
