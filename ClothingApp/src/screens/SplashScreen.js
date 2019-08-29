@@ -34,8 +34,13 @@ class SplashScreen extends Component{
   _bootstrapAsync = async() => {
     console.log("im in usertoken");
     const userToken = await AsyncStorage.getItem('userToken');
-    console.log("waiting on usertoken");
-    console.log(userToken);
+    const userEmail = await AsyncStorage.getItem('email');
+    const userPassword = await AsyncStorage.getItem('password');
+    console.log(userEmail);
+    console.log(userPassword);
+    if (userToken != null) {
+      //firebase.auth().signInWithEmailAndPassword(userEmail, userPassword);
+    }
     this.props.navigation.navigate(userToken ? 'Main' : 'Login')
   };
   //Pull from ASYNC Storage and try logging in here

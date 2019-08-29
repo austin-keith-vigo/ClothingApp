@@ -3,7 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  Button
+  Button,
+  AsyncStorage
 } from 'react-native';
 import SettingsButton from './../components/SettingsButton';
 import firebase from 'firebase';
@@ -20,17 +21,22 @@ class SettingsScreen extends Component{
     }
   };
 
+  _clearAsyncStorage = async() => {
+    await AsyncStorage.clear();
+  };
+
   //Will logout the user from the app and send them back to the login screen
   logoutButtonPressed(){
     var user = firebase.auth().currentUser;
     if (user) {
+      this._clearAsyncStorage();
       firebase.auth().signOut();
       console.log('im out');
       this.props.navigation.navigate('Login')
     } else {
       console.log('no one in');
     }
-  }
+  };
 
   render(){
     return(

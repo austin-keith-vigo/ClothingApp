@@ -32,6 +32,8 @@ class LoginScreen extends Component {
     .then(()=>{
       this.setState({ error : false, errorMessage: '', logginIn: false });
       AsyncStorage.setItem('userToken', 'abc');
+      AsyncStorage.setItem('email', email);
+      AsyncStorage.setItem('password', password);
       this.props.navigation.navigate('Home');
     })
     .catch((error)=>{
