@@ -46,7 +46,8 @@ class SettingsScreen extends Component{
 
 const styles = StyleSheet.create({
   viewStyle: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center'
   },
   buttonStyle: {
     height: 20,
