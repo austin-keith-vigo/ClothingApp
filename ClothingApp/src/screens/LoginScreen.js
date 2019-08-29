@@ -3,7 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  ActivityIndicator
+  ActivityIndicator,
+  AsyncStorage
 } from 'react-native';
 import EmailPasswordForm from './../components/EmailPasswordForm';
 import firebase from 'firebase';
@@ -30,6 +31,7 @@ class LoginScreen extends Component {
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(()=>{
       this.setState({ error : false, errorMessage: '', logginIn: false });
+      AsyncStorage.setItem('userToken', 'abc');
       this.props.navigation.navigate('Home');
     })
     .catch((error)=>{
