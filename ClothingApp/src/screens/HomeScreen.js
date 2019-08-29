@@ -8,6 +8,7 @@ import firebase from 'firebase';
 import SwipeableContainer from './../components/SwipeableContainer';
 
 class HomeScreen extends Component{
+
   static navigationOptions = {
     title: 'Home',
     gesturesEnabled: false,
@@ -16,10 +17,24 @@ class HomeScreen extends Component{
       borderBottomWidth: 0
     }
   };
+
   render(){
     return(
       <View style = {styles.viewStyle}>
-        <SwipeableContainer/>
+        <SwipeableContainer
+          clothingType='shirts'
+          style={{
+            flex: 1,
+            alignItems: 'center'
+          }}
+        />
+        <SwipeableContainer
+          clothingType='jeans'
+          style={{
+            flex: 1,
+            alignItems: 'center'
+          }}
+        />
       </View>
     );
   }
@@ -27,7 +42,6 @@ class HomeScreen extends Component{
 
 const styles = StyleSheet.create({
   viewStyle:{
-    backgroundColor: 'blue',
     flex: 1
   }
 });

@@ -16,10 +16,9 @@ class SwipeableContainer extends Component {
   downloadURLs = [];
   indexVar = 0;
 
-
   constructor(props){
     super(props);
-    this.getDownloadURLs('shirts');
+    this.getDownloadURLs(this.props.clothingType);
     console.log('end of constructor');
   }
 
@@ -50,7 +49,7 @@ class SwipeableContainer extends Component {
   render() {
     return(
       <GestureRecognizer
-        style = {styles.gestureRecognizerStyle}
+        style = {this.props.style}
         onSwipeRight={()=>{
           this.indexVar = (this.indexVar + 1) % this.downloadURLs.length;
           this.setState({ imageSource : this.downloadURLs[this.indexVar] });
@@ -71,13 +70,12 @@ class SwipeableContainer extends Component {
 
 let styles = StyleSheet.create({
   gestureRecognizerStyle: {
-    backgroundColor: 'blue',
     alignItems: 'center',
     flex: 1
   },
   imageStyle: {
-    height: 100,
-    width: 100
+    height: '100%',
+    width: '100%'
   }
 });
 
