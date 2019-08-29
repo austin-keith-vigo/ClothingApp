@@ -12,6 +12,7 @@ import Dialog from 'react-native-dialog';
 class LoginScreen extends Component {
   static navigationOptions = {
     title: 'Login',
+    gesturesEnabled: false,
     headerStyle: {
       height: 0,
       borderBottomWidth: 0
