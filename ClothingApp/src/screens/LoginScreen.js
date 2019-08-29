@@ -29,6 +29,7 @@ class LoginScreen extends Component {
     this.setState({logginIn: true});
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(()=>{
+      this.setState({ error : false, errorMessage: '', logginIn: false });
       this.props.navigation.navigate('Home');
     })
     .catch((error)=>{
