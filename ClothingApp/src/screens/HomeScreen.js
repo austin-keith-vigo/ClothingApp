@@ -19,7 +19,20 @@ class HomeScreen extends Component{
   render(){
     return(
       <View style = {styles.viewStyle}>
-        <SwipeableContainer/>
+        <SwipeableContainer
+          clothingType='shirts'
+          style={{
+            flex: 1,
+            justifyContent: 'center'
+          }}
+        />
+        <SwipeableContainer
+          clothingType='jeans'
+          style={{
+            flex: 1,
+            justifyContent: 'center'
+          }}
+        />
       </View>
     );
   }
@@ -27,7 +40,6 @@ class HomeScreen extends Component{
 
 const styles = StyleSheet.create({
   viewStyle:{
-    backgroundColor: 'blue',
     flex: 1
   }
 });
