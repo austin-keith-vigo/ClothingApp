@@ -6,7 +6,8 @@ import {
 import {
   createAppContainer,
   createStackNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createSwitchNavigator
 } from 'react-navigation';
 import SplashScreen from './screens/SplashScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -49,15 +50,18 @@ const StackNavigator = createStackNavigator({
       headerMode: "none",   //these two navigation options are for disabling
       header: null          //back button on top left of screen
     }                       //can be moved to individual tab components
-  },
+  }
+});
+
+const AuthStack = createSwitchNavigator({
+  Main: StackNavigator,
+  Splash: {screen: SplashScreen},
   Login: { screen: LoginScreen },
-  Splash:{ screen :  SplashScreen },
   },
   {
-    initialRouteName: 'Splash'
+    initialRouteName: "Splash"
   }
 );
 
-
-const App = createAppContainer(StackNavigator);
+const App = createAppContainer(AuthStack);
 export default App;
