@@ -11,7 +11,7 @@ const StackNavigator = createStackNavigator({
   Home: { screen: HomeScreen}
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'Splash'
   }
 );
 
